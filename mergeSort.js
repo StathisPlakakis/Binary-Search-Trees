@@ -27,10 +27,9 @@ function mergeSort(array) {
       return finalArray;
     }
   }
-
+  if (array.length === 0) return []
   const sortedArray = merge(array, 0, array.length - 1);
   let finalArray = [];
-  if (sortedArray.length === 0) return finalArray;
   finalArray.push(sortedArray[0])
   let i = 0;
   let j = 1;
