@@ -1,4 +1,5 @@
 import Node from "./node.js";
+import mergeSort from "./mergeSort.js";
 
 class Tree {
   constructor(array) {
@@ -6,6 +7,6 @@ class Tree {
   }
 
   buildTree(array) {
-    
+    const sortedArray = mergeSort(array);
   }
 }

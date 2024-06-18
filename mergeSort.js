@@ -28,7 +28,23 @@ function mergeSort(array) {
     }
   }
 
-  return merge(array, 0, array.length - 1)
+  const sortedArray = merge(array, 0, array.length - 1);
+  let finalArray = [];
+  if (sortedArray.length === 0) return finalArray;
+  finalArray.push(sortedArray[0])
+  let i = 0;
+  let j = 1;
+  while (j < sortedArray.length) {
+    if (sortedArray[i] === sortedArray[j]) {
+      j += 1;
+    } else {
+      finalArray.push(sortedArray[j]);
+      i = j 
+      j += 1
+    }
+  } 
+  return finalArray;
+
 }
 
 export default mergeSort;
