@@ -22,6 +22,22 @@ class Tree {
     if (length === 0) return new Node(null);
     return sortedArrayToBST(sortedArray, 0, length - 1);
   }
+
+  insert(value) {
+    function insertREc(root, value) {
+      if (!root) {
+        return new Node(value);
+      }else {
+        if (root.data < value) {
+          root.right = insertREc(root.right, value);
+        }else if (root.data > value) {
+          root.left = insertREc(root.left, value);
+        }
+        return root;
+      }
+    }
+    return insertREc(this.root, value)
+  }
 }
 
 export default Tree;
