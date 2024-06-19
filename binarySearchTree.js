@@ -24,19 +24,50 @@ class Tree {
   }
 
   insert(value) {
-    function insertREc(root, value) {
+    function insertRec(root, value) {
       if (!root) {
         return new Node(value);
       }else {
         if (root.data < value) {
-          root.right = insertREc(root.right, value);
+          root.right = insertRec(root.right, value);
         }else if (root.data > value) {
-          root.left = insertREc(root.left, value);
+          root.left = insertRec(root.left, value);
         }
         return root;
       }
     }
-    return insertREc(this.root, value)
+    return insertRec(this.root, value)
+  }
+
+  deleteItem(value) {
+    function deleteRec(root, value) {
+      if (!root) return root;
+      if (root.data > value) {
+        root.left = deleteRec(root.left, value);
+      }else if (root.data < value) {
+        root.right = deleteRec(root.right, value);
+      }else {
+        if (!root.left) {
+          return root.right;
+        }else if (!root.right) {
+          return root.left;
+        }
+        root.data = minValue(root.right)
+        root.right = deleteRec(root.right, root.data)
+      }
+      return root;
+    }
+
+    function minValue(root) {
+      let minV = root.data;
+      while (root.left) {
+        minV = root.left.data;
+        root = root.left
+      }
+      return minV;
+    }
+
+    return deleteRec(this.root, value);
   }
 }
 
