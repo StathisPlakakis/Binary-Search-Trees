@@ -102,7 +102,7 @@ class Tree {
     }
     return arr2;
     }
-    
+
     let arr = [];
     if (this.root) {
       arr.push(this.root);
@@ -117,6 +117,24 @@ class Tree {
       }
       callback(node);
     }
+  }
+
+  preOrder(callback) {
+    let arr = [];
+    function preOrderRec(node, callback) {
+      if (typeof callback !== 'function') {
+        if (!node) return node;
+        arr.push(node.data)
+        preOrderRec(node.left, callback);
+        preOrderRec(node.right, callback);
+        return arr;
+      }
+      if (!node) return node;
+      callback(node);
+      preOrderRec(node.left, callback);
+      preOrderRec(node.right, callback);
+    }
+    return preOrderRec(this.root, callback);
   }
 }
 
