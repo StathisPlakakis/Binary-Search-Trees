@@ -82,6 +82,42 @@ class Tree {
     }
     return findRec(this.root, value);
   }
+
+  levelOrderI(callback) {
+    if (typeof callback !== 'function') {
+      let arr = [];
+      let arr2 = [];
+    if (this.root) {
+      arr.push(this.root);
+    }
+    while (arr.length !== 0) {
+      const node = arr.shift();
+      if (node.left) {
+        arr.push(node.left);
+      }
+      if (node.right) {
+        arr.push(node.right);
+      }
+      arr2.push(node.data);
+    }
+    return arr2;
+    }
+    
+    let arr = [];
+    if (this.root) {
+      arr.push(this.root);
+    }
+    while (arr.length !== 0) {
+      const node = arr.shift();
+      if (node.left) {
+        arr.push(node.left);
+      }
+      if (node.right) {
+        arr.push(node.right);
+      }
+      callback(node);
+    }
+  }
 }
 
 export default Tree;
