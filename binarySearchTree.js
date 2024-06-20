@@ -69,6 +69,19 @@ class Tree {
 
     return deleteRec(this.root, value);
   }
+
+  find(value) {
+    function findRec(root, value) {
+      if (!root) return root;
+      if (root.data > value) {
+        return findRec(root.left, value);
+      }else if (root.data < value) {
+        return findRec(root.right, value);
+      }
+      return root;
+    }
+    return findRec(this.root, value);
+  }
 }
 
 export default Tree;
