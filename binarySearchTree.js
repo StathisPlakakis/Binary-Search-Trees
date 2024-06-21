@@ -136,6 +136,24 @@ class Tree {
     }
     return preOrderRec(this.root, callback);
   }
+
+  inOrder(callback) {
+    let arr = [];
+    function inOrderRec(node, callback) {
+      if (typeof callback !== 'function') {
+        if (!node) return node;
+        inOrderRec(node.left, callback);
+        arr.push(node.data)
+        inOrderRec(node.right, callback);
+        return arr;
+      }
+      if (!node) return node;
+      inOrderRec(node.left, callback);
+      callback(node);
+      inOrderRec(node.right, callback);
+    }
+    return inOrderRec(this.root, callback);
+  }
 }
 
 export default Tree;
