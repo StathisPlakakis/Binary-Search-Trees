@@ -172,6 +172,23 @@ class Tree {
     }
     return postOrderRec(this.root, callback);
   }
+
+  height(value) {
+    const node = this.find(value);
+    if (!node) return node;
+
+    function heightRec(node, height) {
+      if (!node) return height;
+      if (node.right || node.left) {
+      height += 1;
+      }
+      const leftHeight = heightRec(node.left, height);
+      const rightHeight = heightRec(node.right, height);
+      return Math.max(leftHeight, rightHeight);
+    }
+
+    return heightRec(node, 0);
+  }
 }
 
 export default Tree;
