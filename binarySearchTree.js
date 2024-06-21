@@ -176,7 +176,6 @@ class Tree {
   height(value) {
     const node = this.find(value);
     if (!node) return node;
-
     function heightRec(node, height) {
       if (!node) return height;
       if (node.right || node.left) {
@@ -186,8 +185,17 @@ class Tree {
       const rightHeight = heightRec(node.right, height);
       return Math.max(leftHeight, rightHeight);
     }
-
     return heightRec(node, 0);
+  }
+
+  depth(value) {
+    function depthRec(node, depth) {
+      if (!node) return node;
+      if (node.data > value) return depthRec(node.left, depth + 1);
+      else if (node.data < value) return depthRec(node.right, depth + 1);
+      return depth;
+    }
+  return depthRec(this.root, 0);
   }
 }
 
