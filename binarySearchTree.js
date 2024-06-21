@@ -154,6 +154,24 @@ class Tree {
     }
     return inOrderRec(this.root, callback);
   }
+
+  postOrder(callback) {
+    let arr = [];
+    function postOrderRec(node, callback) {
+      if (typeof callback !== 'function') {
+        if (!node) return node;
+        postOrderRec(node.left, callback);
+        postOrderRec(node.right, callback);
+        arr.push(node.data)
+        return arr;
+      }
+      if (!node) return node;
+      postOrderRec(node.left, callback);
+      postOrderRec(node.right, callback);
+      callback(node);
+    }
+    return postOrderRec(this.root, callback);
+  }
 }
 
 export default Tree;
