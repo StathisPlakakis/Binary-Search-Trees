@@ -197,6 +197,30 @@ class Tree {
     }
   return depthRec(this.root, 0);
   }
+
+  isBalanced() {
+    function isBalancedRec(node, height) {
+      if (!node) return [height, true];
+      const left = (node.left) ? 
+                    isBalancedRec(node.left, height + 1) :
+                    isBalancedRec(node.left, height);
+      const leftIsBalanced = left[1];
+      if (!leftIsBalanced) return false;
+      const leftHeight = left[0];              
+      const right = (node.right) ? 
+                     isBalancedRec(node.right, height + 1) :
+                     isBalancedRec(node.right, height);
+      const rightIsBalanced = right[1];              
+      if (!rightIsBalanced) return false;   
+      const rightHeight = right[0];
+      const heightDifference = rightHeight > leftHeight ?
+                               rightHeight - leftHeight <= 1 :
+                               leftHeight - rightHeight <= 1;              
+      return [Math.max(leftHeight, rightHeight), heightDifference];
+    }
+    const result = isBalancedRec(this.root, 0)
+    return result ? result[1] : false
+  }
 }
 
 export default Tree;
