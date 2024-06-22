@@ -221,6 +221,11 @@ class Tree {
     const result = isBalancedRec(this.root, 0)
     return result ? result[1] : false
   }
+
+  rebalance() {
+    const nodes = this.preOrder();
+    this.root = this.buildTree(nodes)
+  }
 }
 
 export default Tree;
